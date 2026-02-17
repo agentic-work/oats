@@ -33,9 +33,21 @@
 
 **OATS** is a Python framework that lets LLMs **synthesize custom tools on-the-fly** instead of being limited to pre-registered tool menus. Every synthesized tool requires **mandatory human approval** before execution. No YOLO mode. No implicit trust.
 
-```
-Traditional:  Tools (how to call APIs) → LLM picks from a fixed menu
-OATS:         Capabilities (what exists) → LLM synthesizes the right tool, fresh
+```mermaid
+flowchart LR
+    subgraph Traditional["Traditional Approach"]
+        T1["Pre-built Tools\n(how to call APIs)"] --> T2["LLM picks\nfrom fixed menu"]
+    end
+    subgraph OATS["OATS Approach"]
+        O1["Capabilities\n(what exists)"] --> O2["LLM synthesizes\nthe right tool"]
+    end
+
+    style Traditional fill:#1a1520,stroke:#ff6b6b,color:#e2e8f0
+    style OATS fill:#1a1520,stroke:#66e5a6,color:#e2e8f0
+    style T1 fill:#2a1520,stroke:#ff6b6b,color:#e2e8f0
+    style T2 fill:#2a1520,stroke:#ff6b6b,color:#e2e8f0
+    style O1 fill:#1a2520,stroke:#66e5a6,color:#e2e8f0
+    style O2 fill:#1a2520,stroke:#66e5a6,color:#e2e8f0
 ```
 
 Static MCP servers and tool registries are a fixed recipe book. OATS is an organic synthesizer — describe what's available, and the LLM grows exactly the tool it needs. Every output gets human-approved before it runs.
@@ -175,35 +187,22 @@ Tools are synthesized, approved, executed, and **discarded**. No schema debt. No
 
 ## Architecture
 
-```
-┌─────────────┐
-│ User Intent  │    "fetch my github notifications"
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│  Capability  │    What's available? github API with bearer auth
-│  Registry    │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ Synthesizer  │    LLM generates: async code + risk + schema
-│   (LLM)     │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│  HITL Gate   │    Human reviews code, approves or denies
-│  🌾 APPROVE │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│  Sandboxed   │    Isolated execution, scoped credentials
-│  Executor    │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│  Grounding   │    Results embedded for semantic search
-│  Pipeline    │
-└─────────────┘
+```mermaid
+flowchart TD
+    A["User Intent\n&quot;fetch my github notifications&quot;"] --> B["Capability Registry\nWhat's available? GitHub API with bearer auth"]
+    B --> C["Synthesizer (LLM)\nGenerates: async code + risk + schema"]
+    C --> D{"HITL Gate\nHuman reviews code"}
+    D -->|Approved| E["Sandboxed Executor\nIsolated execution, scoped credentials"]
+    D -->|Denied| F["Discarded"]
+    E --> G["Grounding Pipeline\nResults embedded for semantic search"]
+
+    style A fill:#1a1520,stroke:#f2a659,color:#e2e8f0
+    style B fill:#1a1520,stroke:#66e5a6,color:#e2e8f0
+    style C fill:#1a1520,stroke:#a673f2,color:#e2e8f0
+    style D fill:#1a1520,stroke:#f2a659,color:#f2a659
+    style E fill:#1a1520,stroke:#66e5a6,color:#e2e8f0
+    style F fill:#1a1520,stroke:#ff6b6b,color:#ff6b6b
+    style G fill:#1a1520,stroke:#a673f2,color:#e2e8f0
 ```
 
 ## Supported LLM Providers
