@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f2a659"/>
+      <stop offset="100%" style="stop-color:#d4822e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Body (oat grain shape) -->
+  <ellipse cx="100" cy="100" rx="45" ry="70" fill="url(#mg)" transform="rotate(-8 100 100)"/>
+
+  <!-- Stalk hat -->
+  <path d="M100 30 Q100 10 95 0" stroke="#66e5a6" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M100 30 Q85 15 75 5" stroke="#66e5a6" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M100 30 Q115 18 120 8" stroke="#66e5a6" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes -->
+  <ellipse cx="85" cy="88" rx="8" ry="9" fill="white"/>
+  <ellipse cx="115" cy="88" rx="8" ry="9" fill="white"/>
+  <ellipse cx="87" cy="89" rx="5" ry="6" fill="#0d1117"/>
+  <ellipse cx="117" cy="89" rx="5" ry="6" fill="#0d1117"/>
+  <circle cx="89" cy="87" r="2" fill="white" opacity="0.9"/>
+  <circle cx="119" cy="87" r="2" fill="white" opacity="0.9"/>
+
+  <!-- Big goofy smile -->
+  <path d="M80 108 Q100 128 120 108" stroke="#0d1117" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Blush -->
+  <circle cx="72" cy="104" r="8" fill="#ff8a80" opacity="0.25"/>
+  <circle cx="128" cy="104" r="8" fill="#ff8a80" opacity="0.25"/>
+
+  <!-- Little arms -->
+  <path d="M58 100 Q40 85 35 95" stroke="url(#mg)" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M142 100 Q160 85 165 95" stroke="url(#mg)" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Waving hand (right) -->
+  <text x="160" y="95" font-size="22">👋</text>
+
+  <!-- Little feet -->
+  <ellipse cx="85" cy="170" rx="12" ry="6" fill="#d4822e"/>
+  <ellipse cx="115" cy="170" rx="12" ry="6" fill="#d4822e"/>
+</svg>

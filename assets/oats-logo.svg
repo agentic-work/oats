@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="grain-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f2a659;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e8943d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4822e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stalk-green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#66e5a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4db88a;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="190" fill="#0d1117" stroke="#30363d" stroke-width="3"/>
+
+  <!-- Inner glow -->
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#f2a659" stroke-width="1" opacity="0.15"/>
+
+  <!-- Oat stalk - center -->
+  <path d="M200 340 Q200 250 200 100" stroke="url(#stalk-green)" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Left branch -->
+  <path d="M200 220 Q170 200 150 170" stroke="url(#stalk-green)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Right branch -->
+  <path d="M200 200 Q230 180 250 155" stroke="url(#stalk-green)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Center top grain cluster -->
+  <ellipse cx="200" cy="95" rx="16" ry="28" fill="url(#grain-gold)" transform="rotate(-5 200 95)" filter="url(#glow)"/>
+  <ellipse cx="188" cy="108" rx="14" ry="24" fill="url(#grain-gold)" transform="rotate(-20 188 108)" opacity="0.9"/>
+  <ellipse cx="212" cy="108" rx="14" ry="24" fill="url(#grain-gold)" transform="rotate(15 212 108)" opacity="0.9"/>
+
+  <!-- Left grain cluster -->
+  <ellipse cx="145" cy="165" rx="14" ry="24" fill="url(#grain-gold)" transform="rotate(-30 145 165)" filter="url(#glow)"/>
+  <ellipse cx="135" cy="178" rx="12" ry="20" fill="url(#grain-gold)" transform="rotate(-45 135 178)" opacity="0.85"/>
+
+  <!-- Right grain cluster -->
+  <ellipse cx="255" cy="150" rx="14" ry="24" fill="url(#grain-gold)" transform="rotate(25 255 150)" filter="url(#glow)"/>
+  <ellipse cx="265" cy="163" rx="12" ry="20" fill="url(#grain-gold)" transform="rotate(40 265 163)" opacity="0.85"/>
+
+  <!-- Cute face on center grain -->
+  <!-- Eyes -->
+  <ellipse cx="193" cy="88" rx="4" ry="5" fill="#0d1117"/>
+  <ellipse cx="207" cy="88" rx="4" ry="5" fill="#0d1117"/>
+  <!-- Eye shine -->
+  <circle cx="195" cy="86" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="209" cy="86" r="1.5" fill="white" opacity="0.8"/>
+  <!-- Smile -->
+  <path d="M194 97 Q200 103 206 97" stroke="#0d1117" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <circle cx="186" cy="96" r="5" fill="#ff8a80" opacity="0.3"/>
+  <circle cx="214" cy="96" r="5" fill="#ff8a80" opacity="0.3"/>
+
+  <!-- Sunglasses (cool factor) -->
+  <!-- <rect x="185" y="82" width="12" height="10" rx="2" fill="#1a1a2e" opacity="0.85"/>
+  <rect x="203" y="82" width="12" height="10" rx="2" fill="#1a1a2e" opacity="0.85"/>
+  <line x1="197" y1="87" x2="203" y2="87" stroke="#1a1a2e" stroke-width="1.5"/> -->
+
+  <!-- Floating sparkles -->
+  <text x="120" y="130" font-size="16" opacity="0.6">✨</text>
+  <text x="270" y="120" font-size="14" opacity="0.5">✨</text>
+  <text x="160" y="80" font-size="12" opacity="0.4">✨</text>
+
+  <!-- OATS text -->
+  <text x="200" y="290" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" fill="white" letter-spacing="8">OATS</text>
+  <text x="200" y="316" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#8b949e" letter-spacing="3">ON-DEMAND AGENT TOOL SYNTHESIS</text>
+</svg>

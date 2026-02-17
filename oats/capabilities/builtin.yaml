@@ -1,0 +1,132 @@
+# OAT Built-in Capabilities
+# These define WHAT is available, not HOW to use it.
+
+capabilities:
+  # ============================================
+  # HTTP / Web Requests
+  # ============================================
+  - name: http
+    description: |
+      Make HTTP requests to external APIs and web services.
+      Supports GET, POST, PUT, DELETE methods.
+      Use httpx for async requests.
+    auth:
+      type: none
+      description: No auth by default, but can use bearer tokens if provided
+    allowed_domains: []  # Empty = all domains allowed (configure per-deployment)
+    rate_limit: 60  # requests per minute
+    max_response_size: 10000000  # 10MB
+    sdk_import: "import httpx"
+
+  # ============================================
+  # Filesystem
+  # ============================================
+  - name: filesystem
+    description: |
+      Read and write files on the local filesystem.
+      Restricted to the configured working directory.
+      Use pathlib for path operations.
+    auth:
+      type: none
+      description: No auth, but path restrictions apply
+    sdk_import: "from pathlib import Path"
+
+  # ============================================
+  # Shell Commands
+  # ============================================
+  - name: shell
+    description: |
+      Execute shell commands in a subprocess.
+      Commands run in the configured working directory.
+      Use asyncio.create_subprocess_exec for async execution.
+    auth:
+      type: none
+      description: No auth, sandboxed execution
+    sdk_import: "import asyncio"
+
+  # ============================================
+  # GitHub API
+  # ============================================
+  - name: github
+    description: |
+      Access the GitHub REST API for repositories, issues, PRs, users, etc.
+      Requires a GitHub Personal Access Token or GitHub App credentials.
+      Use httpx to call api.github.com endpoints.
+    auth:
+      type: bearer
+      scopes:
+        - repo:read
+        - repo:write
+        - issues:read
+        - issues:write
+        - pull_requests:read
+        - pull_requests:write
+        - user:read
+        - notifications:read
+      token_env_var: GITHUB_TOKEN
+      description: GitHub Personal Access Token
+    allowed_domains:
+      - api.github.com
+    rate_limit: 30  # Be conservative with GitHub API
+    schema_url: https://api.github.com
+    schema_type: openapi
+    sdk_import: "import httpx  # Use Authorization: Bearer {GITHUB_TOKEN}"
+
+  # ============================================
+  # Slack API
+  # ============================================
+  - name: slack
+    description: |
+      Access the Slack Web API for messages, channels, users, etc.
+      Requires a Slack Bot Token or User Token.
+    auth:
+      type: bearer
+      scopes:
+        - channels:read
+        - channels:write
+        - chat:write
+        - users:read
+        - files:read
+        - files:write
+      token_env_var: SLACK_TOKEN
+      description: Slack Bot Token (xoxb-) or User Token (xoxp-)
+    allowed_domains:
+      - slack.com
+      - api.slack.com
+    rate_limit: 20
+    schema_type: openapi
+    sdk_import: "import httpx  # Use Authorization: Bearer {SLACK_TOKEN}"
+
+  # ============================================
+  # JSON Processing
+  # ============================================
+  - name: json
+    description: |
+      Parse, transform, and generate JSON data.
+      Use the built-in json module.
+    auth:
+      type: none
+    sdk_import: "import json"
+
+  # ============================================
+  # Date/Time
+  # ============================================
+  - name: datetime
+    description: |
+      Work with dates, times, timezones, and durations.
+      Use datetime and zoneinfo modules.
+    auth:
+      type: none
+    sdk_import: "from datetime import datetime, timedelta; from zoneinfo import ZoneInfo"
+
+  # ============================================
+  # Data Processing
+  # ============================================
+  - name: data
+    description: |
+      Process and transform data structures.
+      Includes sorting, filtering, grouping, aggregation.
+      Use built-in Python functions and comprehensions.
+    auth:
+      type: none
+    sdk_import: "from collections import defaultdict, Counter; from itertools import groupby"
