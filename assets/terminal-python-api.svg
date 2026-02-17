@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="500" viewBox="0 0 820 500">
+  <style>
+    .term-text { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; font-size: 13px; }
+    .prompt { fill: #66e5a6; }
+    .command { fill: #e2e8f0; }
+    .output { fill: #94a3b8; }
+    .highlight { fill: #f2a659; }
+    .keyword { fill: #a673f2; }
+    .string { fill: #66e5a6; }
+    .comment { fill: #64748b; }
+    .builtin { fill: #60a5fa; }
+    .number { fill: #f2a659; }
+    .py-prompt { fill: #66e5a6; }
+  </style>
+
+  <!-- Window chrome -->
+  <rect width="820" height="500" rx="10" fill="#0a0a0f"/>
+  <rect width="820" height="36" rx="10" fill="#1a1a24"/>
+  <rect y="26" width="820" height="10" fill="#1a1a24"/>
+  <circle cx="20" cy="18" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="18" r="6" fill="#febc2e"/>
+  <circle cx="60" cy="18" r="6" fill="#28c840"/>
+  <text x="410" y="22" text-anchor="middle" class="term-text" fill="#64748b" font-size="12">python3 — OATS Python API</text>
+
+  <g transform="translate(20, 52)">
+    <text y="0" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="keyword">from</tspan>
+      <tspan class="command"> oats </tspan>
+      <tspan class="keyword">import</tspan>
+      <tspan class="command"> CapabilityRegistry, Synthesizer, HITLGate</tspan>
+    </text>
+
+    <text y="28" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="keyword">from</tspan>
+      <tspan class="command"> oats.llm </tspan>
+      <tspan class="keyword">import</tspan>
+      <tspan class="command"> AnthropicClient</tspan>
+    </text>
+
+    <text y="56" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="comment"># Register capabilities — what's available, not how to use it</tspan>
+    </text>
+    <text y="74" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">registry = CapabilityRegistry()</tspan>
+    </text>
+    <text y="92" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">registry.register_builtin(</tspan>
+      <tspan class="string">"github"</tspan>
+      <tspan class="command">, </tspan>
+      <tspan class="string">"slack"</tspan>
+      <tspan class="command">, </tspan>
+      <tspan class="string">"http"</tspan>
+      <tspan class="command">)</tspan>
+    </text>
+
+    <text y="120" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="comment"># The LLM synthesizes the right tool from intent</tspan>
+    </text>
+    <text y="138" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">synth = Synthesizer(</tspan>
+    </text>
+    <text y="156" class="term-text">
+      <tspan class="command">...     llm_client=AnthropicClient(),</tspan>
+    </text>
+    <text y="174" class="term-text">
+      <tspan class="command">...     capability_registry=registry</tspan>
+    </text>
+    <text y="192" class="term-text">
+      <tspan class="command">... )</tspan>
+    </text>
+
+    <text y="220" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">tool = </tspan>
+      <tspan class="keyword">await</tspan>
+      <tspan class="command"> synth.synthesize(</tspan>
+      <tspan class="string">"post to #eng that deploy finished"</tspan>
+      <tspan class="command">)</tspan>
+    </text>
+
+    <text y="248" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">tool.risk_level</tspan>
+    </text>
+    <text y="266" class="term-text string">'MEDIUM'</text>
+
+    <text y="294" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">tool.capabilities</tspan>
+    </text>
+    <text y="312" class="term-text output">['slack', 'http']</text>
+
+    <text y="340" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">tool.auth_scopes</tspan>
+    </text>
+    <text y="358" class="term-text output">['chat:write', 'channels:read']</text>
+
+    <text y="386" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="comment"># Mandatory human approval — no auto_approve=True exists</tspan>
+    </text>
+    <text y="404" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">gate = HITLGate()</tspan>
+    </text>
+    <text y="422" class="term-text">
+      <tspan class="py-prompt">>>> </tspan>
+      <tspan class="command">approved = </tspan>
+      <tspan class="keyword">await</tspan>
+      <tspan class="command"> gate.submit_for_approval(tool)</tspan>
+    </text>
+    <text y="440" class="term-text highlight">🌾 Tool approved by human reviewer</text>
+  </g>
+</svg>

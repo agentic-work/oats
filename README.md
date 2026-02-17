@@ -29,16 +29,20 @@
 
 ---
 
-## SOW YOUR OATS 🌾
+## The Synthesizer in Your Stack 🌾
 
 **OATS** is a Python framework that lets LLMs **synthesize custom tools on-the-fly** instead of being limited to pre-registered tool menus. Every synthesized tool requires **mandatory human approval** before execution. No YOLO mode. No implicit trust.
 
 ```
-Traditional:  Tools (how to use) → LLM picks from menu
-OATS:         Capabilities (what's available) → LLM synthesizes what it needs
+Traditional:  Tools (how to call APIs) → LLM picks from a fixed menu
+OATS:         Capabilities (what exists) → LLM synthesizes the right tool, fresh
 ```
 
-Static MCP servers and tool registries are like giving a chef a fixed recipe book. OATS gives them the whole pantry and lets them improvise — with a human taster approving every dish before it's served.
+Static MCP servers and tool registries are a fixed recipe book. OATS is an organic synthesizer — describe what's available, and the LLM grows exactly the tool it needs. Every output gets human-approved before it runs.
+
+<p align="center">
+  <img src="assets/terminal-demo.svg" width="780" alt="OATS CLI Demo — synthesize, approve, execute" />
+</p>
 
 ---
 
@@ -244,6 +248,7 @@ pip install -e ".[dev]"
 OATS works standalone or as a component in larger systems:
 
 - **Claude Code** — expose via MCP server (`oats mcp serve`)
+- **OpenClaw** — dynamic tool synthesis for multi-agent workflows
 - **AgenticWork Platform** — native integration with SSO credential injection
 - **Any agent framework** — use as a Python library
 
@@ -252,6 +257,27 @@ OATS works standalone or as a component in larger systems:
 from oats.mcp import serve
 serve(port=8080)
 ```
+
+### OATS + OpenClaw 🦞🌾
+
+OpenClaw gives agents the ability to reason and coordinate. OATS gives them the ability to synthesize tools on-demand. Together, agents handle any task — with every tool human-approved before execution.
+
+```python
+from openclaw import Agent
+from oats import OATSToolProvider
+
+agent = Agent(
+    tools=[OATSToolProvider(capabilities=["github", "slack", "jira"])],
+    hitl_gate=True,
+)
+
+# Agent synthesizes tools on-the-fly as it works
+result = await agent.run("Triage the last 10 GitHub issues and post a summary to #eng")
+```
+
+<p align="center">
+  <img src="assets/terminal-code-view.svg" width="780" alt="OATS code preview — human reviews synthesized code before execution" />
+</p>
 
 ---
 

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="520" viewBox="0 0 820 520">
+  <style>
+    .term-text { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; font-size: 13px; }
+    .prompt { fill: #66e5a6; }
+    .command { fill: #e2e8f0; }
+    .output { fill: #94a3b8; }
+    .highlight { fill: #f2a659; }
+    .keyword { fill: #a673f2; }
+    .string { fill: #66e5a6; }
+    .comment { fill: #64748b; }
+    .builtin { fill: #60a5fa; }
+    .number { fill: #f2a659; }
+  </style>
+
+  <!-- Window chrome -->
+  <rect width="820" height="520" rx="10" fill="#0a0a0f"/>
+  <rect width="820" height="36" rx="10" fill="#1a1a24"/>
+  <rect y="26" width="820" height="10" fill="#1a1a24"/>
+  <circle cx="20" cy="18" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="18" r="6" fill="#febc2e"/>
+  <circle cx="60" cy="18" r="6" fill="#28c840"/>
+  <text x="410" y="22" text-anchor="middle" class="term-text" fill="#64748b" font-size="12">oats — code preview [v]</text>
+
+  <g transform="translate(20, 52)">
+    <text y="0" class="term-text highlight">📝 Generated Code:</text>
+
+    <line x1="0" y1="14" x2="760" y2="14" stroke="#f2a659" stroke-width="0.5" opacity="0.2"/>
+
+    <!-- Python code -->
+    <text y="36" class="term-text">
+      <tspan class="keyword">import</tspan>
+      <tspan class="command"> aiohttp</tspan>
+    </text>
+    <text y="54" class="term-text">
+      <tspan class="keyword">import</tspan>
+      <tspan class="command"> json</tspan>
+    </text>
+
+    <text y="82" class="term-text">
+      <tspan class="keyword">async def</tspan>
+      <tspan class="builtin"> execute</tspan>
+      <tspan class="command">(context):</tspan>
+    </text>
+
+    <text y="102" class="term-text comment">    # Credentials injected at runtime — never in code</text>
+    <text y="120" class="term-text">
+      <tspan class="command">    token = context.env[</tspan>
+      <tspan class="string">"GITHUB_TOKEN"</tspan>
+      <tspan class="command">]</tspan>
+    </text>
+
+    <text y="148" class="term-text">
+      <tspan class="command">    url = </tspan>
+      <tspan class="string">"https://api.github.com/notifications"</tspan>
+    </text>
+    <text y="166" class="term-text">
+      <tspan class="command">    headers = {</tspan>
+    </text>
+    <text y="184" class="term-text">
+      <tspan class="string">        "Authorization"</tspan>
+      <tspan class="command">: </tspan>
+      <tspan class="keyword">f</tspan>
+      <tspan class="string">"Bearer {token}"</tspan>
+      <tspan class="command">,</tspan>
+    </text>
+    <text y="202" class="term-text">
+      <tspan class="string">        "Accept"</tspan>
+      <tspan class="command">: </tspan>
+      <tspan class="string">"application/vnd.github.v3+json"</tspan>
+    </text>
+    <text y="220" class="term-text command">    }</text>
+
+    <text y="248" class="term-text">
+      <tspan class="keyword">    async with</tspan>
+      <tspan class="command"> aiohttp.ClientSession() </tspan>
+      <tspan class="keyword">as</tspan>
+      <tspan class="command"> session:</tspan>
+    </text>
+    <text y="266" class="term-text">
+      <tspan class="keyword">        async with</tspan>
+      <tspan class="command"> session.get(</tspan>
+    </text>
+    <text y="284" class="term-text">
+      <tspan class="command">            url, headers=headers,</tspan>
+    </text>
+    <text y="302" class="term-text">
+      <tspan class="command">            params={</tspan>
+      <tspan class="string">"per_page"</tspan>
+      <tspan class="command">: </tspan>
+      <tspan class="number">5</tspan>
+      <tspan class="command">}</tspan>
+    </text>
+    <text y="320" class="term-text">
+      <tspan class="command">        ) </tspan>
+      <tspan class="keyword">as</tspan>
+      <tspan class="command"> resp:</tspan>
+    </text>
+    <text y="338" class="term-text">
+      <tspan class="command">            data = </tspan>
+      <tspan class="keyword">await</tspan>
+      <tspan class="command"> resp.json()</tspan>
+    </text>
+
+    <text y="366" class="term-text">
+      <tspan class="keyword">    return</tspan>
+      <tspan class="command"> [</tspan>
+    </text>
+    <text y="384" class="term-text command">        {</text>
+    <text y="402" class="term-text">
+      <tspan class="string">            "title"</tspan>
+      <tspan class="command">: n[</tspan>
+      <tspan class="string">"subject"</tspan>
+      <tspan class="command">][</tspan>
+      <tspan class="string">"title"</tspan>
+      <tspan class="command">],</tspan>
+    </text>
+    <text y="420" class="term-text">
+      <tspan class="string">            "reason"</tspan>
+      <tspan class="command">: n[</tspan>
+      <tspan class="string">"reason"</tspan>
+      <tspan class="command">],</tspan>
+    </text>
+    <text y="438" class="term-text">
+      <tspan class="string">            "repo"</tspan>
+      <tspan class="command">: n[</tspan>
+      <tspan class="string">"repository"</tspan>
+      <tspan class="command">][</tspan>
+      <tspan class="string">"full_name"</tspan>
+      <tspan class="command">]</tspan>
+    </text>
+    <text y="456" class="term-text">
+      <tspan class="command">        } </tspan>
+      <tspan class="keyword">for</tspan>
+      <tspan class="command"> n </tspan>
+      <tspan class="keyword">in</tspan>
+      <tspan class="command"> data</tspan>
+    </text>
+    <text y="474" class="term-text command">    ]</text>
+  </g>
+</svg>
