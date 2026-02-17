@@ -335,7 +335,7 @@ MIT — see [LICENSE](LICENSE)
 <p align="center">
   <img src="assets/oats-mascot.svg" width="80" alt="OATS Mascot" />
   <br />
-  <strong>OATS</strong> — Sow the seeds. Reap the tools. 🌾
+  <strong>OATS</strong> — On-demand Agent Tool Synthesis 🌾
   <br />
   <sub>Built by <a href="https://agenticwork.io">AgenticWork</a></sub>
 </p>

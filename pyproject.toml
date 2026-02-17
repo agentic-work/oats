@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "oats-ai"
-version = "0.1.0"
+version = "0.5.0"
 description = "OATS — On-demand Agent Tool Synthesis. LLMs synthesize and execute one-shot tools with mandatory human approval."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [
-    { name = "AgenticWork", email = "dev@agenticwork.io" }
+    { name = "Trent", email = "trent@agenticwork.io" }
 ]
 keywords = [
     "llm",
